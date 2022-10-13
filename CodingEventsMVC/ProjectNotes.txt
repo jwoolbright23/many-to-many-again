@@ -1,0 +1,6 @@
+﻿Walking through the CodingEventsDemo project in chapters 13-18
+GitHub repos for completed work: https://github.com/LaunchCodeEducation/CodingEventsDemo
+Chapter 9: https://education.launchcode.org/csharp-web-development/chapters/aspdotnet-intro/index.html
+Chapter 10: https://education.launchcode.org/csharp-web-development/chapters/aspdotnet-controllers-and-routes/index.html
+
+

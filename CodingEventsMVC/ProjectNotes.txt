@@ -3,4 +3,7 @@ GitHub repos for completed work: https://github.com/LaunchCodeEducation/CodingEv
 Chapter 9: https://education.launchcode.org/csharp-web-development/chapters/aspdotnet-intro/index.html
 Chapter 10: https://education.launchcode.org/csharp-web-development/chapters/aspdotnet-controllers-and-routes/index.html
 
-
+13.1-5 good
+13.6 - video adds conditional, not part of text instructions or solution code
+13.7-9
+13.10 added link for razor conditional syntax 

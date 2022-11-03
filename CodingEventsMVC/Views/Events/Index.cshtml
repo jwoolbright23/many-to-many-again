@@ -1,0 +1,46 @@
+﻿@*13.6.3.5*@
+
+<h1>Coding Events</h1>
+
+@*13.6.7*@
+<p>
+    <a asp-controller="Events" asp-action="Add">Add Event</a>
+</p>
+
+@*From the video, not in the text instructions*@
+@if (ViewBag.events.Count == 0)
+{
+    <p>No events yet.</p>
+}
+else
+{
+@*13.10 Exercises*@
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        @foreach (KeyValuePair<string, string> evt in ViewBag.events)
+        {
+            <tr>
+                <td>@evt.Key</td>
+                <td>@evt.Value</td>
+            </tr>
+        }
+    </table>
+}
+
+
+
+
+@*13.10 replace with table populated by dictionary
+    <ul>
+        @foreach (string meeting in ViewBag.events)
+        {
+            <li>@meeting</li>
+        }
+    </ul>*@

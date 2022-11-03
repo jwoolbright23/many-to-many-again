@@ -6,4 +6,7 @@ Chapter 10: https://education.launchcode.org/csharp-web-development/chapters/asp
 13.1-5 good
 13.6 - video adds conditional, not part of text instructions or solution code
 13.7-9
-13.10 added link for razor conditional syntax 
+13.10 added link for razor conditional syntax
+
+Starting 14
+14.1

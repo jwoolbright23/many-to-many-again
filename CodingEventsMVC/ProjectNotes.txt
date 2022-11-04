@@ -16,5 +16,20 @@ Rest of chapter 14 works well
 
 15 worked well.  earlier changes made still hold up
 
-16
+16 worked well
+
+17 ---
+17.2:  changes for registering the data store:
+https://stackoverflow.com/questions/72670847/using-pomelo-entityframeworkcore-mysql-to-connect-to-mysql-with-net-6-on-mac
+        var app = builder.Build();
+
+        //17 ---- UPDATED 
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+        var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+        builder.Services.AddDbContext<EventDbContext>(options =>
+                   options.UseMySql(defaultConnection, serverVersion));
+
+        // -----
+        // Configure the HTTP request pipeline.
 

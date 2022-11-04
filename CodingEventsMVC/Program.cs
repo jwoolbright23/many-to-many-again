@@ -1,10 +1,22 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using CodingEventsMVC.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+//17 ---- UPDATED 
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<EventDbContext>(options =>
+           options.UseMySql(defaultConnection, serverVersion));
+
+// -----
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

@@ -6,6 +6,10 @@ namespace CodingEventsMVC.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ContactEmail { get; set; }
+
+        //16
+        public EventType Type { get; set; }
 
         public int Id { get; }
         static private int nextId = 1;
@@ -16,11 +20,15 @@ namespace CodingEventsMVC.Models
             nextId++;
         }
 
-        public Event(string name, string description):this()
+        public Event(string name, string description, string contactEmail):this()
         {
             Name = name;
             Description = description;
+            ContactEmail = contactEmail;
         }
+
+
+
 
         public override string? ToString()
         {

@@ -10,10 +10,12 @@
     <None Remove="Views\Events\" />
     <None Remove="Models\" />
     <None Remove="Data\" />
+    <None Remove="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Events\" />
     <Folder Include="Models\" />
     <Folder Include="Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

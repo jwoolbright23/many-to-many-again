@@ -1,6 +1,7 @@
 ﻿using System;
 using CodingEventsDemo.Data;
 using CodingEventsMVC.Models;
+using CodingEventsMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodingEventsMVC.Controllers
@@ -14,24 +15,39 @@ namespace CodingEventsMVC.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.events = EventData.GetAll();
+            List<Event> events = new List<Event>(EventData.GetAll());
 
-            return View();
+            return View(events);
 
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            AddEventViewModel addEventViewModel = new AddEventViewModel();
+
+            return View(addEventViewModel);
         }
 
         [HttpPost]
-        [Route("/Events/Add")]
-        public IActionResult NewEvent(Event newEvent)
+        //[Route("/Events/Add")]
+        public IActionResult Add(AddEventViewModel addEventViewModel)
         {
-            EventData.Add(newEvent);
-            return Redirect("/Events");
+            if (ModelState.IsValid)
+            {
+                Event newEvent = new Event
+                {
+                    Name = addEventViewModel.Name,
+                    Description = addEventViewModel.Description,
+                    //15.3
+                    ContactEmail = addEventViewModel.ContactEmail,
+                    //16.2
+                    Type = addEventViewModel.Type
+                };
+                EventData.Add(newEvent);
+                return Redirect("/Events");
+            }
+            return View(addEventViewModel);   
         }
 
         [HttpGet]
@@ -53,7 +69,7 @@ namespace CodingEventsMVC.Controllers
             return Redirect("/Events");
         }
 
-
+        //14.5 Exercises 
         [HttpGet]
         [Route("/Events/Edit/{eventId}")]
         public IActionResult Edit(int eventId)
@@ -64,13 +80,16 @@ namespace CodingEventsMVC.Controllers
             return View();
         }
 
+        //14.5 Exercises
         [HttpPost]
         [Route("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string description)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string description, string contactEmail)
         {
             Event editingEvent = EventData.GetById(eventId);
             editingEvent.Name = name;
             editingEvent.Description = description;
+            //15.3
+            editingEvent.ContactEmail = contactEmail;
             return Redirect("/Events");
         }
 

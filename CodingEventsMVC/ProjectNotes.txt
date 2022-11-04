@@ -12,4 +12,9 @@ Starting 14
 14.1 & 14.2 
 14.3: had to update the razor view:  tried adding the labels in this reply and it seemed to work
       https://mdbootstrap.com/support/jquery/i-am-having-trouble-with-an-mvc-checkbox/
-14.4
+Rest of chapter 14 works well
+
+15 worked well.  earlier changes made still hold up
+
+16
+

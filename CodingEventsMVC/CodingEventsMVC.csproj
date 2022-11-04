@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <None Remove="Views\Events\" />
+    <None Remove="Models\" />
+    <None Remove="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Events\" />
+    <Folder Include="Models\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 </Project>

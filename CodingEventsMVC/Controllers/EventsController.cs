@@ -1,35 +1,25 @@
 ﻿using System;
+using CodingEventsDemo.Data;
+using CodingEventsMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodingEventsMVC.Controllers
 {
-    //13.6.3.1 
     public class EventsController : Controller
     {
-        //13.10 - convert list to dictionary
-        //static private List<string> Events = new List<string>();
+        //14.2 - changed dictionary to list
+        static private List<Event> Events = new List<Event>();
 
-        static private Dictionary<string, string> Events = new Dictionary<string, string>();
-
-        //13.6.3.2
         //GET: /<controller>/
         [HttpGet]
         public IActionResult Index()
         {
-            //13.6.3.3
-            //Comment these out -- NewEvent method replaces this
-            //Events.Add("Code With Pride");
-            //Events.Add("Strange Loop");
-            //Events.Add("Code & Coffee");
-
-            //13.6.3.4
-            ViewBag.events = Events;
+            ViewBag.events = EventData.GetAll();
 
             return View();
 
         }
 
-        //13.6.4
         [HttpGet]
         public IActionResult Add()
         {
@@ -38,11 +28,52 @@ namespace CodingEventsMVC.Controllers
 
         [HttpPost]
         [Route("/Events/Add")]
-        public IActionResult NewEvent(string name, string desc)
+        public IActionResult NewEvent(Event newEvent)
         {
-            Events.Add(name, desc);
+            EventData.Add(newEvent);
             return Redirect("/Events");
         }
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            ViewBag.events = EventData.GetAll();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int[] eventIds)
+        {
+            foreach (int eventId in eventIds)
+            {
+                EventData.Remove(eventId);
+            }
+
+            return Redirect("/Events");
+        }
+
+
+        [HttpGet]
+        [Route("/Events/Edit/{eventId}")]
+        public IActionResult Edit(int eventId)
+        {
+            Event editingEvent = EventData.GetById(eventId);
+            ViewBag.eventToEdit = editingEvent;
+            ViewBag.title = "Edit Event: " + editingEvent.Name + "(id = " + editingEvent.Id + ")";
+            return View();
+        }
+
+        [HttpPost]
+        [Route("/Events/Edit")]
+        public IActionResult SubmitEditEventForm(int eventId, string name, string description)
+        {
+            Event editingEvent = EventData.GetById(eventId);
+            editingEvent.Name = name;
+            editingEvent.Description = description;
+            return Redirect("/Events");
+        }
+
     }
 }
 

@@ -9,4 +9,7 @@ Chapter 10: https://education.launchcode.org/csharp-web-development/chapters/asp
 13.10 added link for razor conditional syntax
 
 Starting 14
-14.1
+14.1 & 14.2 
+14.3: had to update the razor view:  tried adding the labels in this reply and it seemed to work
+      https://mdbootstrap.com/support/jquery/i-am-having-trouble-with-an-mvc-checkbox/
+14.4

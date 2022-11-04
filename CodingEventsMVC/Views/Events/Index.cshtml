@@ -4,7 +4,12 @@
 
 @*13.6.7*@
 <p>
-    <a asp-controller="Events" asp-action="Add">Add Event</a>
+    <a asp-controller="Events" asp-action="Add">Add Events</a>
+</p>
+
+@*14.3.5*@
+<p>
+    <a asp-controller="Events" asp-action="Delete">Delete Events</a>
 </p>
 
 @*From the video, not in the text instructions*@
@@ -18,29 +23,23 @@ else
     <table>
         <tr>
             <th>
+                Id
+            </th>
+            <th>
                 Name
             </th>
             <th>
                 Description
             </th>
         </tr>
-        @foreach (KeyValuePair<string, string> evt in ViewBag.events)
+        @*14.2*@
+        @foreach (var evt in ViewBag.events)
         {
             <tr>
-                <td>@evt.Key</td>
-                <td>@evt.Value</td>
+                <td>@evt.Id</td>
+                <td>@evt.Name</td>
+                <td>@evt.Description </td>
             </tr>
         }
     </table>
 }
-
-
-
-
-@*13.10 replace with table populated by dictionary
-    <ul>
-        @foreach (string meeting in ViewBag.events)
-        {
-            <li>@meeting</li>
-        }
-    </ul>*@

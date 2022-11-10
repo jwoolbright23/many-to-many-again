@@ -9,6 +9,7 @@ using CodingEventsMVC.Data;
 using CodingEventsMVC.Models;
 using CodingEventsMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,13 +28,16 @@ namespace CodingEventsMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Event> events = context.Events.ToList();
+            List<Event> events = context.Events
+                .Include(e => e.Category)
+                .ToList();
 
             return View(events);
         }
 
         public IActionResult Add()
         {
+            List<EventCategory> categories = context.Categories.ToList();
             AddEventViewModel addEventViewModel = new AddEventViewModel();
 
             return View(addEventViewModel);
@@ -44,12 +48,13 @@ namespace CodingEventsMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                EventCategory? theCategory = context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name!,
                     Description = addEventViewModel.Description!,
                     ContactEmail = addEventViewModel.ContactEmail!,
-                    Type = addEventViewModel.Type
+                    Category = theCategory!
                 };
 
                 context.Events.Add(newEvent);

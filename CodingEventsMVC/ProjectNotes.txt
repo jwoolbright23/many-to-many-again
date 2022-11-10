@@ -19,6 +19,8 @@ Rest of chapter 14 works well
 16 worked well
 
 17 ---
+17.1:  as is
+
 17.2:  changes for registering the data store:
 https://jasonwatmore.com/post/2022/03/25/net-6-connect-to-mysql-database-with-entity-framework-core
 https://stackoverflow.com/questions/72670847/using-pomelo-entityframeworkcore-mysql-to-connect-to-mysql-with-net-6-on-mac
@@ -33,5 +35,7 @@ https://stackoverflow.com/questions/72670847/using-pomelo-entityframeworkcore-my
 
         // -----
         // Configure the HTTP request pipeline.
-17.3
+
+17.3: 
+
 

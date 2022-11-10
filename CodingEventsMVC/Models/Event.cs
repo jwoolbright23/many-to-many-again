@@ -10,8 +10,9 @@ namespace CodingEventsMVC.Models
         public string? Description { get; set; }
         public string? ContactEmail { get; set; }
 
-        //16
-        public EventType Type { get; set; }
+        //18
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
         public Event()
         {
@@ -25,7 +26,7 @@ namespace CodingEventsMVC.Models
         }
 
 
-
+        //removed EventType
 
         public override string? ToString()
         {

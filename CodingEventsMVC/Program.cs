@@ -7,16 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//--- MySql connection
+
+    //pomelo connection syntax: https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
+    // working with the .NET 6 (specifically the lack of a Startup.cs)
+        //https://learn.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0#add-configuration-providers
+
+var connectionString = "server=localhost;user=mvc_testing;password=mvc_testing;database=mvc_testing";
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+
+builder.Services.AddDbContext<EventDbContext>(
+    dbContextOptions => dbContextOptions
+        .UseMySql(connectionString, serverVersion));
+//--- end of connection syntax
+
 var app = builder.Build();
 
-//17 ---- UPDATED 
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<EventDbContext>(options =>
-           options.UseMySql(defaultConnection, serverVersion));
-
-// -----
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

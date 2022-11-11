@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//using CodingEventsDemo.Data;
-//using CodingEventsDemo.Models;
-using CodingEventsDemo.ViewModels;
 using CodingEventsMVC.Data;
 using CodingEventsMVC.Models;
 using CodingEventsMVC.ViewModels;
@@ -29,6 +26,7 @@ namespace CodingEventsMVC.Controllers
         public IActionResult Index()
         {
             List<Event> events = context.Events
+                //this is creating the foriegn key
                 .Include(e => e.Category)
                 .ToList();
 
@@ -37,8 +35,10 @@ namespace CodingEventsMVC.Controllers
 
         public IActionResult Add()
         {
+            //list added in 18 to pass categories && and populate our dropdown in the view
+            //queried Category table for category options
             List<EventCategory> categories = context.Categories.ToList();
-            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
 
             return View(addEventViewModel);
         }
@@ -48,7 +48,7 @@ namespace CodingEventsMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                EventCategory? theCategory = context.Categories.Find(addEventViewModel.CategoryId);
+                EventCategory theCategory = context.Categories.Find(addEventViewModel.CategoryId)!;
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name!,
@@ -85,6 +85,21 @@ namespace CodingEventsMVC.Controllers
             context.SaveChanges();
 
             return Redirect("/Events");
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Event theEvent = context.Events
+               .Include(e => e.Category)
+               .Single(e => e.Id == id);
+
+            List<EventTag> eventTags = context.EventTags
+                .Where(et => et.EventId == id)
+                .Include(et => et.Tag)
+                .ToList();
+
+            AddEventDetailViewModel viewModel = new AddEventDetailViewModel(theEvent, eventTags);
+            return View(viewModel);
         }
     }
 }

@@ -6,11 +6,11 @@ namespace CodingEventsMVC.Models
     {
         //17
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public string? ContactEmail { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ContactEmail { get; set; }
 
-        //18
+        //18 - creating our Foreign Key
         public EventCategory Category { get; set; }
         public int CategoryId { get; set; }
 
@@ -20,15 +20,15 @@ namespace CodingEventsMVC.Models
 
         public Event(string name, string description, string contactEmail)
         {
-            Name = name;
-            Description = description;
-            ContactEmail = contactEmail;
+            Name = name!;
+            Description = description!;
+            ContactEmail = contactEmail!;
         }
 
 
         //removed EventType
 
-        public override string? ToString()
+        public override string ToString()
         {
             return Name;
         }

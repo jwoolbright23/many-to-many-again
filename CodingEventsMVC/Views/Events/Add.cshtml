@@ -26,7 +26,8 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CategoryId"></label>
+        @*18.3.1 -- updating to pull in categories*@
+        <label asp-for="CategoryId">Event Category</label>
         <select asp-for="CategoryId" asp-items="Model.Categories"></select>
     </div>
 

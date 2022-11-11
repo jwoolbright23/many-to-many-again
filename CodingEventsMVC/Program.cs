@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
     // working with the .NET 6 (specifically the lack of a Startup.cs)
         //https://learn.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0#add-configuration-providers
 
-var connectionString = "server=localhost;user=mvc_testing;password=mvc_testing;database=mvc_testing";
+var connectionString = "server=localhost;user=mvc_testing;password=mvc_testing1;database=mvc_testing";
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 
 builder.Services.AddDbContext<EventDbContext>(

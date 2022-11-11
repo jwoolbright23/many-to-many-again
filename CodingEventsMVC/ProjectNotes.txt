@@ -36,6 +36,6 @@ https://stackoverflow.com/questions/72670847/using-pomelo-entityframeworkcore-my
         // -----
         // Configure the HTTP request pipeline.
 
-17.3: 
+17.3:
 
 

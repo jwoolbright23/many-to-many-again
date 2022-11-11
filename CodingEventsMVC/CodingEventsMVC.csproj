@@ -18,6 +18,7 @@
     <None Remove="Views\EventCategory\" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Migrations\" />
+    <None Remove="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Events\" />
@@ -26,6 +27,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\EventCategory\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />

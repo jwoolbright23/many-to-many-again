@@ -10,16 +10,16 @@ namespace CodingEventsMVC.ViewModels
         //attributes for 15.3
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters.")]
-        public string? Name { get; set; }
-
+        public string Name { get; set; }
+   
         [Required(ErrorMessage = "Please enter a description for your event.")]
         [StringLength(500, ErrorMessage = "Description is too long!")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [EmailAddress]
-        public string? ContactEmail { get; set; }
+        public string ContactEmail { get; set; }
 
-        //18
+        //18.3.1
         [Required(ErrorMessage ="Category is required")]
         public int CategoryId { get; set; }
 
@@ -39,7 +39,7 @@ namespace CodingEventsMVC.ViewModels
             }
         }
 
-        //18
+        //18 -- no arg controller 18.3.2
         public AddEventViewModel() { }
 
     }

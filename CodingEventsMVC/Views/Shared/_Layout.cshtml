@@ -36,8 +36,22 @@
                         <li class="nav-item">
                             @*14.5 - exercises -- added to make Edit available*@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="Edit">Edit</a>
-                                </li>
-                            </ul>
+                        </li>
+                        @*17.5 studio addition -- we can add and view categories (they will be required in ORM part 2)*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EventCategory" asp-action="Index">All Event Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EventCategory" asp-action="Create">Add Category</a>
+                        </li>
+                        @*18.5 -- adding Tags*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tag" asp-action="Index">All Tags</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tag" asp-action="Add">Add Tag</a>
+                        </li>
+                    </ul>
                         </div>
                     </div>
                 </nav>

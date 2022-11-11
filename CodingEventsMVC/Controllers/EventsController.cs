@@ -37,6 +37,7 @@ namespace CodingEventsMVC.Controllers
         {
             //list added in 18 to pass categories && and populate our dropdown in the view
             //queried Category table for category options
+
             List<EventCategory> categories = context.Categories.ToList();
             AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
 

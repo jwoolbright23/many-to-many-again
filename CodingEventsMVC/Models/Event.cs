@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace CodingEventsMVC.Models
 {
     //created in 14.2
@@ -14,15 +16,19 @@ namespace CodingEventsMVC.Models
         public EventCategory Category { get; set; }
         public int CategoryId { get; set; }
 
+
+        public List<EventTag> EventTags { get; set; }  //collection navigation
+
+
         public Event()
         {
         }
 
         public Event(string name, string description, string contactEmail)
         {
-            Name = name!;
-            Description = description!;
-            ContactEmail = contactEmail!;
+            Name = name;
+            Description = description;
+            ContactEmail = contactEmail;
         }
 
 
@@ -45,4 +51,9 @@ namespace CodingEventsMVC.Models
         }
     }
 }
+
+//TODO: A -- start here  
+//https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes?source=recommendations
+//https://learn.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
+//https://www.entityframeworktutorial.net/efcore/configure-many-to-many-relationship-in-ef-core.aspx
 

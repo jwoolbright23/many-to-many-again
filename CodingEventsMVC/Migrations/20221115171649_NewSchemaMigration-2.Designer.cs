@@ -2,6 +2,7 @@
 using CodingEventsMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodingEventsMVC.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    partial class EventDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221115171649_NewSchemaMigration-2")]
+    partial class NewSchemaMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,7 +113,7 @@ namespace CodingEventsMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CodingEventsMVC.Models.Tag", "Tag")
+                    b.HasOne("CodingEventsMVC.Models.Tag", "Tags")
                         .WithMany("EventTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -119,7 +121,7 @@ namespace CodingEventsMVC.Migrations
 
                     b.Navigation("Event");
 
-                    b.Navigation("Tag");
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("CodingEventsMVC.Models.Event", b =>

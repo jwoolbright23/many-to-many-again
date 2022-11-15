@@ -2,6 +2,7 @@
 using CodingEventsMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodingEventsMVC.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    partial class EventDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221114183759_NextMigration-2")]
+    partial class NextMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,13 +108,13 @@ namespace CodingEventsMVC.Migrations
             modelBuilder.Entity("CodingEventsMVC.Models.EventTag", b =>
                 {
                     b.HasOne("CodingEventsMVC.Models.Event", "Event")
-                        .WithMany("EventTags")
+                        .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CodingEventsMVC.Models.Tag", "Tag")
-                        .WithMany("EventTags")
+                        .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -122,19 +124,9 @@ namespace CodingEventsMVC.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("CodingEventsMVC.Models.Event", b =>
-                {
-                    b.Navigation("EventTags");
-                });
-
             modelBuilder.Entity("CodingEventsMVC.Models.EventCategory", b =>
                 {
                     b.Navigation("events");
-                });
-
-            modelBuilder.Entity("CodingEventsMVC.Models.Tag", b =>
-                {
-                    b.Navigation("EventTags");
                 });
 #pragma warning restore 612, 618
         }

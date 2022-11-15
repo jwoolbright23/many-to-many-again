@@ -1,7 +1,7 @@
 ﻿using System;
 namespace CodingEventsMVC.Models
 {
-	//18.5
+	//18.5.3
 	public class EventTag
 	{
 		public int EventId { get; set; }
@@ -11,7 +11,6 @@ namespace CodingEventsMVC.Models
 		public Tag Tag { get; set; }
 
 		//this class creates a compound key
-
 
 		public EventTag()
 		{

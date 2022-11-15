@@ -25,6 +25,12 @@ namespace CodingEventsMVC.ViewModels
 
         public List<SelectListItem>? Categories { get; set; }
 
+
+
+
+
+
+
         public AddEventViewModel(List<EventCategory> categories)
         {
             Categories = new List<SelectListItem>();

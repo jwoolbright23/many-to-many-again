@@ -3,6 +3,7 @@ using CodingEventsMVC.Data;
 using CodingEventsMVC.Models;
 using CodingEventsMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEventsMVC.Controllers
 {
@@ -43,10 +44,13 @@ namespace CodingEventsMVC.Controllers
 
 		public IActionResult AddEvent(int id)
 		{
-            //SYNTAX CHANGE 18.5.4
-            //source: https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0#synchronous-action
-            var theEvent = context.Events.Find(id);
+			//SYNTAX CHANGE 18.5.4
+			//source: https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0#synchronous-action
+
+
+			Event theEvent = context.Events.Find(id);
 			List<Tag> possibleTags = context.Tags.ToList();
+
 			AddEventTagViewModel addEventTagViewModel = new AddEventTagViewModel(theEvent, possibleTags);
 
 			return View(addEventTagViewModel);
@@ -56,32 +60,43 @@ namespace CodingEventsMVC.Controllers
 		[HttpPost]
 		public IActionResult AddEvent(AddEventTagViewModel addEventTagViewModel)
 		{
-			if(ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
 				int eventId = addEventTagViewModel.EventId;
 				int tagId = addEventTagViewModel.TagId;
 
-				List<EventTag> existingItems = context.EventTags
-					.Where(et => et.EventId == eventId)
-					.Where(et => et.TagId == tagId)
+				List<EventTag> eventTags = context.EventTags
+					//.Where(et => et.EventId == eventId)
+					//.Where(et => et.TagId == tagId)
 					.ToList();
 
-				if (existingItems.Count == 0)
+				if (eventTags.Count == 0)
 				{
-                    EventTag eventTag = new EventTag
-                    {
-                        EventId = eventId,
-                        TagId = tagId
-                    };
-                    context.EventTags.Add(eventTag);
-                    context.SaveChanges();
-                }
+					EventTag eventTag = new EventTag
+					{
+						EventId = eventId,
+						TagId = tagId
+					};
+					context.EventTags.Add(eventTag);
+					context.SaveChanges();
+			}
 
-				return Redirect("/Events/Detail/" + eventId);
+			return Redirect("/Events/Detail/" + eventId);
 			}
 			return View(addEventTagViewModel);
 		}
-    }
+
+		public IActionResult Detail(int id)
+		{
+			List<EventTag> eventTags = context.EventTags
+				.Where(et => et.TagId == id)
+				.Include(et => et.Event)
+				.Include(et => et.Tag)
+				.ToList();
+
+			return View(eventTags);
+		}
+	}
 }
 
 

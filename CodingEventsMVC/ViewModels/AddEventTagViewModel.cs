@@ -8,15 +8,17 @@ namespace CodingEventsMVC.ViewModels
 {
 	public class AddEventTagViewModel
 	{
-        [Required(ErrorMessage = "Event is required")]
+        //Event elements
         public int EventId { get; set; }
-
-        [Required(ErrorMessage = "Tag is required")]
-        public int TagId { get; set; }
-
         public Event Event { get; set; }
 
-        public List<SelectListItem>? Tags { get; set; }
+        //Tag elements
+        public int TagId { get; set; }
+        public List<SelectListItem> Tags { get; set; }
+
+
+
+
 
         public AddEventTagViewModel(Event theEvent, List<Tag> possibleTags)
         {

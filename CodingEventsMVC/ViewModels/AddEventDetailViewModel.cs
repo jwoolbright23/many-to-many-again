@@ -3,6 +3,7 @@ using CodingEventsMVC.Models;
 
 namespace CodingEventsMVC.ViewModels
 {
+    //18.4
     public class AddEventDetailViewModel
     {
         public int EventId { get; set; }
@@ -11,6 +12,8 @@ namespace CodingEventsMVC.ViewModels
         public string ContactEmail { get; set; }
         public string CategoryName { get; set; }
         public string TagText { get; set; }
+
+
 
         public AddEventDetailViewModel(Event theEvent, List<EventTag> eventTags)
         {

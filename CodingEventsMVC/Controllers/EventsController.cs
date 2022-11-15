@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Threading.Tasks;
 using CodingEventsMVC.Data;
@@ -79,7 +80,7 @@ namespace CodingEventsMVC.Controllers
         {
             foreach (int eventId in eventIds)
             {
-                Event? theEvent = context.Events.Find(eventId);
+                Event theEvent = context.Events.Find(eventId)!;
                 context.Events.Remove(theEvent!);
             }
 
@@ -94,13 +95,15 @@ namespace CodingEventsMVC.Controllers
                .Include(e => e.Category)
                .Single(e => e.Id == id);
 
+            //chapter 18
             List<EventTag> eventTags = context.EventTags
                 .Where(et => et.EventId == id)
                 .Include(et => et.Tag)
                 .ToList();
 
-            AddEventDetailViewModel viewModel = new AddEventDetailViewModel(theEvent, eventTags);
-            return View(viewModel);
+            AddEventDetailViewModel addEventViewModel = new AddEventDetailViewModel(theEvent, eventTags);
+
+            return View(addEventViewModel);
         }
     }
 }

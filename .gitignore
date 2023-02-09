@@ -11,6 +11,7 @@ autom4te.cache/
 tarballs/
 test-results/
 testing-file
+tested
 
 # Mac bundle stuff
 *.dmg
